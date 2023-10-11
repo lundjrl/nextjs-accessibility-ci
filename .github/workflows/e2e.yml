@@ -1,0 +1,48 @@
+name: End-to-end tests
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      # You'll need to make sure node is installed first
+      - name: Install Node
+        uses: actions/setup-node@v3
+
+      - name: Install yarn
+        run: npm install -g yarn
+
+      - name: Get Yarn Cache Directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      # Build the Next.js site
+      - name: Build Next Site
+        run: yarn build && yarn start
+
+      # Use the Next.js build cache
+      - name: Fetching Cache
+        uses: actions/cache@v3
+        id: yarn-cache # Needed to check for `cache-hit`
+        with:
+          # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      # Run cypress tests
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: yarn build
+          start: yarn start
+          browser: chrome
+          record: false
+          wait-on: 'http://localhost:3000'
