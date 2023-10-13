@@ -4,4 +4,10 @@ describe('Page accessibility tests', () => {
     cy.injectAxe()
     cy.checkA11y()
   })
+
+  it('Fail page should have no accessibility issues', () => {
+    cy.visit('http://localhost:3000')
+    cy.injectAxe()
+    cy.checkA11y()
+  })
 })
