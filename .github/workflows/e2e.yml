@@ -6,27 +6,34 @@ jobs:
   cypress-run:
     runs-on: ubuntu-22.04
     steps:
-      # You'll need to make sure node is installed first
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: Install Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version-file: '.nvmrc'
           cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
 
-      # - name: Install yarn
-      # run: npm install -g yarn
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            .next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+
       - name: Install project dependencies
-        run: yarn
+        run: yarn install
 
-      # Build the Next.js site
-      - name: Build Next Site
-        run: yarn build && yarn start
+      - name: Build Next.js site
+        run: yarn build
 
-      # Run cypress tests
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cypress run
+      - name: Run E2E tests
         uses: cypress-io/github-action@v6
         with:
           build: yarn build
