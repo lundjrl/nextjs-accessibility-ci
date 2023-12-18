@@ -21,5 +21,5 @@ export const terminalLog = violations => {
 it('Logs violations to the terminal', () => {
   cy.visit('http://localhost:3000/fail')
   cy.injectAxe()
-  cy.checkA11y(null, null, terminalLog)
+  cy.checkA11y(undefined, undefined, terminalLog)
 })

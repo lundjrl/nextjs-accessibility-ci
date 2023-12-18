@@ -14,25 +14,25 @@ describe('Page accessibility tests', () => {
     cy.injectAxe()
 
     // With a terminal log
-    cy.checkA11y(null, null, terminalLog)
+    cy.checkA11y(undefined, undefined, terminalLog)
   })
 
   it('Colors page should have no accessibility issues', () => {
     cy.visit('http://localhost:3000/colors')
     cy.injectAxe()
-    cy.checkA11y(null, null, terminalLog)
+    cy.checkA11y(undefined, undefined, terminalLog)
   })
 
   it('Can target specific DOM elements', () => {
     cy.visit('http://localhost:3000/target')
     cy.injectAxe()
-    cy.checkA11y('#some-div', null, terminalLog)
+    cy.checkA11y('#some-div', undefined, terminalLog)
   })
 
   it('Can ignore specific DOM elements', () => {
     cy.visit('http://localhost:3000/ignore')
     cy.injectAxe()
-    cy.checkA11y({ exclude: [['#bad-heading']] }, null, terminalLog)
+    cy.checkA11y({ exclude: [['#bad-heading']] }, undefined, terminalLog)
   })
 
   it('Can check against custom rules', () => {
@@ -42,7 +42,7 @@ describe('Page accessibility tests', () => {
 
     cy.visit('http://localhost:3000/custom-rules')
     cy.injectAxe()
-    cy.checkA11y(null, { rules }, terminalLog)
+    cy.checkA11y(undefined, { rules }, terminalLog)
   })
 
   it('Can check for only critical issues', () => {
@@ -51,7 +51,7 @@ describe('Page accessibility tests', () => {
 
     // Options are: ['critical', 'serious', 'moderate', 'minor']
     cy.checkA11y(
-      null,
+      undefined,
       {
         includedImpacts: ['critical'],
       },
