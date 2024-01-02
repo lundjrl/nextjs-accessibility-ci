@@ -1,11 +1,10 @@
 
 <div align="center">
 
-[![Passes Next.js build](https://github.com/lundjrl/spark-accessibility-ci/actions/workflows/nextjs.yml/badge.svg)](https://github.com/lundjrl/spark-accessibility-ci/actions/workflows/nextjs.yml)
-
-[![Passes E2E tests](https://github.com/lundjrl/spark-accessibility-ci/actions/workflows/e2e.yml/badge.svg)](https://github.com/lundjrl/Next-App-Template/actions/workflows/e2e.yml)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  <a href="">[![Passes Next.js build](https://github.com/lundjrl/spark-accessibility-ci/actions/workflows/nextjs.yml/badge.svg)](https://github.com/lundjrl/spark-accessibility-ci/actions/workflows/nextjs.yml)</a>
+  <a href="">[![Passes E2E tests](https://github.com/lundjrl/spark-accessibility-ci/actions/workflows/e2e.yml/badge.svg)](https://github.com/lundjrl/Next-App-Template/actions/workflows/e2e.yml)
+</a>
+  <a href="">[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)</a>
 
 </div>
 
