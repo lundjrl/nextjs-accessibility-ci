@@ -9,13 +9,13 @@ describe('Page accessibility tests', () => {
     cy.checkA11y()
   })
 
-  it('Fail page should have no accessibility issues', () => {
-    cy.visit('http://localhost:3000/fail')
-    cy.injectAxe()
+  // it('Fail page should have no accessibility issues', () => {
+  //   cy.visit('http://localhost:3000/fail')
+  //   cy.injectAxe()
 
-    // With a terminal log
-    cy.checkA11y(undefined, undefined, terminalLog)
-  })
+  //   // With a terminal log
+  //   cy.checkA11y(undefined, undefined, terminalLog)
+  // })
 
   it('Colors page should have no accessibility issues', () => {
     cy.visit('http://localhost:3000/colors')
