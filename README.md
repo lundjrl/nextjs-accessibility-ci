@@ -12,12 +12,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, install dependencies with `nvm use && yarn install`
+First, install dependencies with `bun install` or `nvm use && yarn install`
 
-Then, run the development server with `yarn dev`
+Then, run the development server with `bun run dev`
 
 ## Running CI/CD
 
-First, in a terminal window, run `yarn dev` to start the site.
+First, in a terminal window, run `bun run dev` to start the site.
 
-Then, run `yarn cypress:open` to open the E2E suite.
+Then, run `bun run cypress:open` or `yarn cypress:open` to open the E2E suite.
