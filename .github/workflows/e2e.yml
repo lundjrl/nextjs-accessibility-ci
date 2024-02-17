@@ -1,5 +1,10 @@
 name: End-to-end tests
 
+description: 'runs E2E against project'
+
+runs:
+  using: 'node20'
+
 on:
   pull_request:
     branches:

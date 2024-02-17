@@ -1,5 +1,10 @@
 name: Check Next.js Build
 
+description: 'makes sure project builds correctly'
+
+runs:
+  using: 'node20'
+
 on:
   push:
     branches: ['main']
