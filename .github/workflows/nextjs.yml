@@ -1,10 +1,5 @@
 name: Check Next.js Build
 
-description: 'makes sure project builds correctly'
-
-runs:
-  using: 'node20'
-
 on:
   push:
     branches: ['main']
@@ -16,26 +11,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-          cache-dependency-path: '**/yarn.lock'
-
-      - name: Restore cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            .next/cache
-          # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
 
       - name: Install project dependencies
-        run: yarn install
+        run: bun install
 
       - name: Build Next.js site
-        run: yarn build
+        run: bun run build
